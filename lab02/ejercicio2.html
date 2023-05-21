@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ejercicio 02</title>
+    <h2>EJERCICIO 2</h2>
+    <h3>Escriba una página web que reciba un texto y al presionar un botón muestre el mismo texto invertido en otra sección (div). Por ejemplo si se escribe “Hola”, se mostraría como “aloH”.</h3>
     <script>
-    function palindromo(t){
-    var p = document.getElementById(t).value;
+    function textoInvertido(t){
+    var x = document.getElementById(t).value;
     var aux = "";
-    for (var i = p.length-1; i>=0; i--){
-        aux = aux + p.charAt(i);
+    for (var i = x.length-1; i>=0; i--){
+        aux = aux + x.charAt(i);
     }
-    document.getElementById("respuesta").innerHTML = "Palindromo: "+aux;
+    document.getElementById("rpta").innerHTML = "El texto invertido es "+aux;
 }
     </script>
 </head>
 <body>
     <div id="form1">
         <input type="text" id="texto">
-        <input type="submit" value="enviar" onclick="palindromo('texto')">
+        <input type="submit" value="enviar" onclick="textoInvertido('texto')">
     </div>
     <br>
     <div>
-        <p id="respuesta"></p>
+        <p id="rpta"></p>
     </div>
 </body>
 </html>
