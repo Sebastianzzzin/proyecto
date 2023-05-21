@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicio 02</title>
+    <script>
+    function palindromo(t){
+    var p = document.getElementById(t).value;
+    var aux = "";
+    for (var i = p.length-1; i>=0; i--){
+        aux = aux + p.charAt(i);
+    }
+    document.getElementById("respuesta").innerHTML = "Palindromo: "+aux;
+}
+    </script>
+</head>
+<body>
+    <div id="form1">
+        <input type="text" id="texto">
+        <input type="submit" value="enviar" onclick="palindromo('texto')">
+    </div>
+    <br>
+    <div>
+        <p id="respuesta"></p>
+    </div>
+</body>
+</html>
+
