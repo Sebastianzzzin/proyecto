@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>EJERCICIO 4</title>
+  
+<script>
+   
+
+    function obtenerCodigoSesion() {
+      var url = document.getElementById("urlInput").value;
+      
+      // Obtener el código de sesión de la URL
+      var codigoSesion = obtenerCodigoDesdeURL(url);
+      
+      // Mostrar el código de sesión sin guiones separados
+      document.getElementById("codigoSesion").innerHTML = codigoSesion.replace(/-/g, "");
+    }
+    
+    function obtenerCodigoDesdeURL(url) {
+      // Patrón para buscar el código de sesión en la URL
+      var patron = /\/([a-zA-Z0-9_-]{10,})[#/]?/;
+      
+      // Buscar el código de sesión en la URL
+      var resultado = url.match(patron);
+      
+      // Si se encuentra un código de sesión válido, devolverlo
+      if (resultado && resultado.length > 1) {
+        return resultado[1];
+      }
+      // Si no se encuentra un código de sesión válido, devolver una cadena vacía
+      return "";
+    }
+  </script>
+</head>
+<body>
+<h2>EJERCICIO4:<br> Escribir una página que reciba la URL de la sesión de google meet de hoy y devuelva el código de la sesión sin guiones separados</br></h2>
+<h3>Obtener código de sesión de Google Meet</h3>
+  
+<label for="urlInput">Ingrese la URL de la sesión de una reunion de Google Meet:</label>
+  <input type="text" id="urlInput">
+  <button onclick="obtenerCodigoSesion()">Obtener código de sesión</button>
+  
+<p>El código de la sesión sin guiones separados de la reunion es <span id="codigoSesion"></span></p>
+</body>
+</html>
