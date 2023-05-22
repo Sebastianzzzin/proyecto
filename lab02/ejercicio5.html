@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>	EJERCICIO 5</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        #sum-button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>EJERCICIO 5<br>Escribir una página que permita calcular la suma de todos los valores de una tabla de valores dinámica. La idea es crear una página web con un formulario que te permita decir cuántos valores tendrás la tabla, luego, al enviar el formulario la tabla se debe crear dinámicamente, junto con otro botón de enviado para calcular la suma.</br></h2>
+    <h3>Suma de los valores de una tabla</h3>
+    
+    <form id="value-form">
+        <label for="num-values">Cantidad de espacios en la tabla:</label>
+        <input type="number" id="num-values" name="num-values" min="1" required>
+        <input type="submit" value="Crear tabla">
+    </form>
+
+    <div id="table-container"></div>
+
+    <button id="sum-button" disabled>Calcular suma</button>
+    <p id="result"></p>
+
+    <script>
+        // Función para crear la tabla dinámicamente
+        function createTable() {
+            var numValues = parseInt(document.getElementById("num-values").value);
+            var tableContainer = document.getElementById("table-container");
+
+            var table = document.createElement("table");
+            var tbody = document.createElement("tbody");
+
+            for (var i = 0; i < numValues; i++) {
+                var row = document.createElement("tr");
+                var cell = document.createElement("td");
+                var input = document.createElement("input");
+                input.type = "number";
+                input.name = "value-" + (i + 1);
+                input.required = true;
+                cell.appendChild(input);
+                row.appendChild(cell);
+                tbody.appendChild(row);
+            }
+
+            table.appendChild(tbody);
+            tableContainer.innerHTML = "";
+            tableContainer.appendChild(table);
+
+            document.getElementById("sum-button").disabled = false;
+            document.getElementById("result").innerHTML = "";
+        }
+
+        // Función para calcular la suma de los valores
+        function calculateSum() {
+            var numValues = parseInt(document.getElementById("num-values").value);
+            var sum = 0;
+
+            for (var i = 0; i < numValues; i++) {
+                var inputValue = parseInt(document.getElementsByName("value-" + (i + 1))[0].value);
+                sum += inputValue;
+            }
+
+            document.getElementById("result").innerHTML = "La suma de los valores es " + sum;
+        }
+
+        // Event listener para el formulario
+        document.getElementById("value-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            createTable();
+        });
+
+        // Event listener para el botón de calcular suma
+        document.getElementById("sum-button").addEventListener("click", function() {
+            calculateSum();
+        });
+    </script>
+</body>
+</html>
