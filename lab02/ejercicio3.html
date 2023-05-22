@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+<title>EJERCICIO 3</title> 
+ 
+<script>
+window.onload = function() {
+      // Fecha actual
+      var hoy = new Date();
+
+      // Fecha del Día de Arequipa (asumiendo que es el 15 de agosto)
+      var diaArequipa = new Date(hoy.getFullYear(), 7, 15);
+
+      // Si la fecha actual es posterior al Día de Arequipa del año actual, sumamos un año para el cálculo
+      if (hoy.getMonth() > 7 || (hoy.getMonth() === 7 && hoy.getDate() > 15)) {
+        diaArequipa.setFullYear(diaArequipa.getFullYear() + 1);
+      }
+
+      // Diferencia en milisegundos entre las dos fechas
+      var timeDiff = diaArequipa.getTime() - hoy.getTime();
+
+      // Convertimos los milisegundos a días
+      var diasRestantes = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+      // Mostramos el resultado en la página
+      document.getElementById("diasRestantes").innerHTML = diasRestantes.toString();
+}
+</script>
+</head>
+<body>
+<h2>EJERCICIO 3:<br>Escribir una página que muestre cuántos días faltan para el día de Arequipa</br></h2>
+<h3>Cuenta regresiva para el Día de Arequipa:</h3>
+<p>Faltan <span id="diasRestantes"></span> días para el Día de Arequipa.</p>
+</body>
+
+</html>
